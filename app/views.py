@@ -118,7 +118,7 @@ def foodie(n):
     ymd = y + '.' + m + '.' + d
     currenttime = int(t.time())
     dayList = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-
+    weekendRefresh = 0
     # 일요일, 새로고침되지 않았을 때 실행 (다른 방법 필요할듯, 업데이트 날짜 가져와서 7일 내이면 넘기고, 아니면 업데이트 하는 식으로)
     # food함수 내에는 고쳐질 게 많다. 토요일, 일요일에 리턴하는 0값을 처리해야 함.
     # 또, 방학이나 공휴일처럼 평일이지만 배식하지 않는 경우를 추가해줘야 함.
@@ -126,7 +126,7 @@ def foodie(n):
 
     print("Time elasped after task built : {}".format(currenttime - updatedtime))
     if currenttime - updatedtime > 500000 or isRefreshed == 0 or lunch == []:
-
+        
         print('Getting meals, wait for moment...')
         from bs4 import BeautifulSoup
         import requests
@@ -180,11 +180,14 @@ def foodie(n):
         dinner += ['메뉴가 없습니다.'] * 2
         updatedtime = int(t.time())
         isRefreshed = 1
+        if weekendRefresh == 0:
+            weekendRefresh = 1
         print("Meal task has been built / refreshed!")
 
     # 주말에 함수 호출시에 리프레시 0으로 맞춰주자
-    if n in ['Sat', 'Sun'] and isRefreshed == 1:
-        isRefreshed = 0
+    if n == 'Sun':
+        if weekendRefresh == 0:
+            isRefreshed = 0
 
     return [str(dayList.index(n)), m, d]
 
