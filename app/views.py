@@ -124,10 +124,10 @@ def foodie(n):
     # 또, 방학이나 공휴일처럼 평일이지만 배식하지 않는 경우를 추가해줘야 함.
     # -> 500000초 (약 5.7일) 초과 시 자동 업데이트, 단 foodie 함수가 활성화돼야 함
 
-    print("Time elasped : {}".format(currenttime - updatedtime))
-    if ((currenttime - updatedtime) > 500000) or isRefreshed == 0 or lunch == []:
+    print("Time elasped after task built : {}".format(currenttime - updatedtime))
+    if currenttime - updatedtime > 500000 or isRefreshed == 0 or lunch == []:
 
-        print('Empty Food task, Building up...')
+        print('Getting meals, wait for moment...')
         from bs4 import BeautifulSoup
         import requests
         # 중식 r1, 석식 r2
@@ -828,7 +828,7 @@ def message(request):
                             "플러스친구 개발 : 구암고등학교 2018학년도 졸업, 건국대학교 컴퓨터공학과 '19 이동훈 \n"
                             "Github : https://github.com/donghoony/guahmchatbot\n"
                             "이용해 주셔서 고맙습니다 :)"
-                            
+
                 },
 
 
