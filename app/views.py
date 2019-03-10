@@ -837,7 +837,24 @@ def message(request):
 
                 'keyboard': {
                     'type': 'buttons',
-                    'buttons': ['구암고 급식안내', '내 등굣길 버스안내', '내 하굣길 버스안내', '등하교 버스안내', '내 등하굣길 설정하기', '도움말']
+                    'buttons': ['구암고 급식안내', '내 등굣길 버스안내', '내 하굣길 버스안내', '등하교 버스안내', '내 등하굣길 설정하기', '도움말', '급식 새로고침']
+                }
+            }
+        )
+    elif clickedButton == '급식 새로고침':
+        lunch = []
+        isRefreshed = False
+        foodie('Mon')
+        
+        return JsonResponse(
+            {
+                'message': {
+                    'text': "새로고침되었습니다."
+
+                },
+                'keyboard': {
+                    'type': 'buttons',
+                    'buttons': ['구암고 급식안내', '내 등굣길 버스안내', '내 하굣길 버스안내', '등하교 버스안내', '내 등하굣길 설정하기', '도움말', '급식 새로고침']
                 }
             }
         )
