@@ -125,7 +125,7 @@ def foodie(n):
     # -> 500000초 (약 5.7일) 초과 시 자동 업데이트, 단 foodie 함수가 활성화돼야 함
 
     print("Time elasped after task built : {}".format(currenttime - updatedtime))
-    if currenttime - updatedtime > 500000 or isRefreshed == 0 or lunch == []:
+    if (currenttime - updatedtime) > 500000 or isRefreshed == 0 or lunch == [] or forceUpdate == 1:
         
         print('Getting meals, wait for moment...')
         from bs4 import BeautifulSoup
@@ -842,8 +842,7 @@ def message(request):
             }
         )
     elif clickedButton == '급식 새로고침':
-        lunch = []
-        isRefreshed = False
+        forceUpdate = 1
         foodie('Mon')
         
         return JsonResponse(
