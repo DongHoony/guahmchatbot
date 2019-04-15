@@ -125,8 +125,9 @@ def foodie(n, isForce):
     # -> 500000초 (약 5.7일) 초과 시 자동 업데이트, 단 foodie 함수가 활성화돼야 함
 
     print("Time elasped after task built : {}".format(currenttime - updatedtime))
-    if (currenttime - updatedtime) > 500000 or isRefreshed == 0 or lunch == [] or isForce:
-        
+    if ((currenttime - updatedtime) > 500000) or (isRefreshed == 0) or (lunch == []) or (isForce):
+        if isForce:
+            print('Forcing to update')
         print('Getting meals, wait for moment...')
         from bs4 import BeautifulSoup
         import requests
