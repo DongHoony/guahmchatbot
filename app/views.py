@@ -205,7 +205,7 @@ def keyboard(request):
 
 @csrf_exempt
 def message(request):
-    global bus_stn_setting_list, bus_stn_dict_13, bus_stn_dict_5513, bus_stn_dict_01, isSetting, settingTime
+    global bus_stn_setting_list, bus_stn_dict_13, bus_stn_dict_5513, bus_stn_dict_01, isSetting, settingTime, lunch, dinner
     json_str = (request.body).decode('utf-8')
     received_json = json.loads(json_str)
     clickedButton = received_json['content']
@@ -843,7 +843,8 @@ def message(request):
             }
         )
     elif clickedButton == '급식 새로고침':
-        
+        lunch = []
+        dinner = []
         foodie('Mon', 1)
         
         return JsonResponse(
